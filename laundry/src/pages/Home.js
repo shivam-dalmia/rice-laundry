@@ -1,17 +1,12 @@
-
-import './home.css'
 import React, { useState } from 'react';
+import './home.css';
 
 export default function Home() {
-
-    const [selectedCollege, setSelectedCollege] = useState('baker'); // State to store the selected college
+    const [selectedCollege, setSelectedCollege] = useState('baker');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Check if a college is selected
         if (selectedCollege) {
-            // Redirect to the selected college's page
             window.location.href = `/${selectedCollege}`;
         }
     };
@@ -21,36 +16,39 @@ export default function Home() {
     };
 
     return (
-        <html>
-            <head>
-                <link rel="preconnect" href="https://fonts.googleapis.com"/>
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-                <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap" rel="stylesheet"/>
-            </head>
+        <div className="home-container">
+            <div className="glass-card">
+                <img className="home-logo" src="../../logo.jpg" alt="Rice Laundry Logo" />
+                <h1 className="title-large">Rice Laundry</h1>
+                <p className="subtitle">Check machine availability in real-time</p>
 
-            <div class = "center">
-                <h2>Welcome to Laundry @ Rice</h2>
-                <img class = "home-logo" src="../../logo.jpg"/>
-                <h4>Find out which machines are available!</h4>
-                <form onSubmit={handleSubmit}>
-                    <label for="res coll">Residential College:</label>
-                    <select name="res coll" id="res coll" onChange={handleCollegeChange}>
-                        <option value="baker">Baker</option>
-                        <option value="willrice">Will Rice</option>
-                        <option value="hanszen">Hanszen</option>
-                        <option value="wiess">Wiess</option>
-                        <option value="jones">Jones</option>
-                        <option value="brown">Brown</option>
-                        <option value="lovett">Lovett</option>
-                        <option value="sidrichardson">Sid Richardson</option>
-                        <option value="martel">Martel</option>
-                        <option value="mcmurtry">McMurtry</option>
-                        <option value="duncan">Duncan</option>
-                    </select>
-                    <br></br>
-                        <input class = "button" type="submit" value="START!"></input>
+                <form onSubmit={handleSubmit} className="college-form">
+                    <div className="select-wrapper">
+                        <select
+                            className="styled-select"
+                            value={selectedCollege}
+                            onChange={handleCollegeChange}
+                        >
+                            <option value="baker">Baker</option>
+                            <option value="willrice">Will Rice</option>
+                            <option value="hanszen">Hanszen</option>
+                            <option value="wiess">Wiess</option>
+                            <option value="jones">Jones</option>
+                            <option value="brown">Brown</option>
+                            <option value="lovett">Lovett</option>
+                            <option value="sidrichardson">Sid Richardson</option>
+                            <option value="martel">Martel</option>
+                            <option value="mcmurtry">McMurtry</option>
+                            <option value="duncan">Duncan</option>
+                        </select>
+                        <span className="select-arrow">▼</span>
+                    </div>
+
+                    <button className="start-button" type="submit">
+                        Find Machines
+                    </button>
                 </form>
             </div>
-        </html>
-    )
+        </div>
+    );
 }
